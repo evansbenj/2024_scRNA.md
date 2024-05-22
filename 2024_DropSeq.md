@@ -48,3 +48,17 @@ module load StdEnv/2020 gffread/0.12.3
 gffread -E XENLA_10.1_Xenbase_longest.gff3 -T -o XENLA_10.1_Xenbase_longest.gtf
 sed -i 's/transcript    /gene   /g' XENLA_10.1_Xenbase_longest.gtf
 ```
+
+# Convert gff to gtf
+Using AGAT
+```
+https://github.com/NBISweden/AGAT/tree/master?tab=readme-ov-file#using-singularity
+```
+Install using a singularity:
+```
+# get the chosen AGAT container version
+singularity pull docker://quay.io/biocontainers/agat:1.0.0--pl5321hdfd78af_0
+# run the container
+singularity run agat_1.0.0--pl5321hdfd78af_0.sif
+agat_convert_sp_gff2gtf.pl --gff ../../../2021_XL_v10_refgenome/XENLA_10.1_Xenbase_longest.gff3 --gtf ../../../2021_XL_v10_refgenome/XENLA_10.1_Xenbase_longest.gtf
+```
