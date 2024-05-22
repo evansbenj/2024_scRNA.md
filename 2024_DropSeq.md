@@ -41,3 +41,10 @@ p <- ggplot(a, aes(x=1:length(x), y=x)) +
 ggsave(p, file = "SRR19560472_hist.jpg",  width = 5, height = 5, units="cm")
 
 ```
+
+I had problems with annotating using TagReadWithGeneFunction, I think because the format of the gtf file did not have any "gene" annotation in the 3rd column. I modified this by making a new gtf file
+```
+module load StdEnv/2020 gffread/0.12.3
+gffread -E XENLA_10.1_Xenbase_longest.gff3 -T -o XENLA_10.1_Xenbase_longest.gtf
+sed -i 's/transcript    /gene   /g' XENLA_10.1_Xenbase_longest.gtf
+```
